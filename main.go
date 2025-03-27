@@ -14,6 +14,10 @@ import (
 	"github.com/mdlayher/vsock"
 )
 
+var (
+	Version = "dev"
+)
+
 const (
 	FrameTypeData       = 0x01
 	FrameTypeWindowSize = 0x02
@@ -21,8 +25,10 @@ const (
 
 func main() {
 
-	fmt.Printf(`slicer-ssh-agent - Copyright (c) 2025 Alex Ellis, OpenFaaS Ltd
-`)
+	fmt.Printf(`slicer-ssh-agent (version: %s)
+Copyright (c) 2025 Alex Ellis, OpenFaaS Ltd
+
+`, Version)
 
 	port := uint32(514)
 	l, err := vsock.Listen(port, nil)
