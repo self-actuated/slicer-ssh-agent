@@ -59,7 +59,10 @@ func handleConnection(conn net.Conn) {
 		// Set environment variables to make it look like SSH
 		shellCmd.Env = append(os.Environ(),
 			"SSH_TTY=/dev/pts/0",
-			"TERM=xterm-256color")
+			"TERM=xterm-256color",
+			"HOME=/root/")
+
+		shellCmd.Dir = "/root/"
 
 		if _, err := os.Stat("/etc/update-motd.d/"); err == nil {
 			shellCmd.Args = append(shellCmd.Args, "-c", "/usr/bin/run-parts /etc/update-motd.d/; exec bash")
